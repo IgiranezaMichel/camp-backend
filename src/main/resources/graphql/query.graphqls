@@ -3,6 +3,7 @@ type Query{
 accountHolderPage(input:PageInput):AccountHolderPage
 # Church
 churchPage(input:PageInput):ChurchPage
+findAllByChurchType(input:ChurchType):[Church]
 # Duty
 dutyPage(input:PageInput):DutyPage
 # level
