@@ -1,5 +1,6 @@
 package com.campbackend.controller;
 
+import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -7,8 +8,11 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+
+import com.campbackend.enums.ChurchType;
 import com.campbackend.input.ChurchInput;
 import com.campbackend.input.PageInput;
+import com.campbackend.modal.Church;
 import com.campbackend.pagination.ChurchPage;
 import com.campbackend.services.ChurchServices;
 
@@ -26,5 +30,9 @@ public class ChurchController {
     @QueryMapping
     public ChurchPage churchPage(@Argument(name = "input")PageInput page){
         return churchServices.churchPage(page);
+    }
+    @QueryMapping
+    public List<Church> findAllByChurchType(@Argument(name = "input")ChurchType churchType) {
+        return churchServices.findAllByChurchType(churchType);
     }
 }
