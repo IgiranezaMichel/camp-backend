@@ -4,10 +4,7 @@ import java.util.UUID;
 
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.annotations.UuidGenerator.Style;
-
 import com.campbackend.enums.ChurchType;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -25,12 +22,12 @@ public class Church {
     private String name;
     @Enumerated(EnumType.STRING)
     private ChurchType type;
-    @ManyToOne(targetEntity = Church.class,cascade = CascadeType.DETACH)
+    @ManyToOne(targetEntity = Church.class)
     private Church church;
     private String location;
-    @OneToMany(cascade = CascadeType.REFRESH,mappedBy ="church",targetEntity = Church.class)
+    @OneToMany(mappedBy ="church",targetEntity = Church.class)
     private List<Church> churchList;
-    @OneToMany( cascade = CascadeType.ALL,mappedBy="church",targetEntity = Duty.class)
+    @OneToMany(mappedBy="church",targetEntity = Duty.class)
     private List<Duty>listOfDuty;
     public Church(UUID id, String name, ChurchType type, Church church,String location) {
         this.id = id;
