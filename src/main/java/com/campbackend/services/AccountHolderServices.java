@@ -14,6 +14,7 @@ import com.campbackend.input.PageInput;
 import com.campbackend.modal.AccountHolder;
 import com.campbackend.pagination.AccountHolderPage;
 import com.campbackend.repository.AccountHolderRepository;
+
 @Service
 public class AccountHolderServices {
     @Autowired
@@ -33,6 +34,11 @@ public class AccountHolderServices {
         return accountHolderRepository.findById(id).orElseThrow();
     }
 
+    public AccountHolder findByEmail(String email) {
+        AccountHolder accountHolder = accountHolderRepository.findByEmail(email);
+        return accountHolder;
+    }
+
     public ResponseEntity<String> deleteAccountHolder(UUID id) {
         try {
             AccountHolder accountHolder = this.findById(id);
@@ -42,8 +48,11 @@ public class AccountHolderServices {
             return new ResponseEntity<>(" Something happen", HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
- public AccountHolderPage accountPage(PageInput page){
-    org.springframework.data.domain.Page<AccountHolder> pagination=accountHolderRepository.findAll(PageRequest.of(page.getPageNumber(),page.getPageSize(),Sort.by(page.getSort())));
-    return new AccountHolderPage(pagination.getNumber(), pagination.getTotalPages(), pagination.getTotalElements(), pagination.getContent());
- }
+
+    public AccountHolderPage accountPage(PageInput page) {
+        org.springframework.data.domain.Page<AccountHolder> pagination = accountHolderRepository
+                .findAll(PageRequest.of(page.getPageNumber(), page.getPageSize(), Sort.by(page.getSort())));
+        return new AccountHolderPage(pagination.getNumber(), pagination.getTotalPages(), pagination.getTotalElements(),
+                pagination.getContent());
+    }
 }
