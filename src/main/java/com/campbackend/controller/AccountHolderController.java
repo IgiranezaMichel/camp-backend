@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import com.campbackend.input.AccountHolderInput;
 import com.campbackend.input.PageInput;
+import com.campbackend.modal.AccountHolder;
 import com.campbackend.pagination.AccountHolderPage;
 import com.campbackend.services.AccountHolderServices;
 @Controller
@@ -27,5 +28,9 @@ public class AccountHolderController {
     @QueryMapping
     public AccountHolderPage accountHolderPage(@Argument(name = "input")PageInput page){
         return accountHolderServices.accountPage(page);
+    }
+    @QueryMapping
+    public AccountHolder findByEmail(@Argument(name = "email")String email){
+        return accountHolderServices.findByEmail(email);
     }
 }
