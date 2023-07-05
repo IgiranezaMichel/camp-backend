@@ -1,6 +1,6 @@
 package com.campbackend.services;
 
-import java.util.UUID;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,11 +15,13 @@ import com.campbackend.modal.AccountHolder;
 import com.campbackend.modal.Church;
 import com.campbackend.modal.Duty;
 import com.campbackend.pagination.DutyPage;
+import com.campbackend.repository.ChurchRepository;
 import com.campbackend.repository.DutyRepository;
 @Service
 public class DutyServices {
     @Autowired
     private DutyRepository dutyRepository;
+    @Autowired ChurchRepository churchRepository;
     private AccountHolderServices accountHolderServices;
     private ChurchServices churchServices;
 
@@ -57,5 +59,10 @@ public class DutyServices {
                 .findAll(PageRequest.of(page.getPageNumber(), page.getPageSize(), Sort.by(page.getSort())));
         return new DutyPage(pagination.getNumber(), pagination.getTotalPages(), pagination.getTotalElements(),
                 pagination.getContent());
+    }
+
+    public List<Duty> findUserWorkingAtTheSameChurch(UUID churchId) {
+       Church church=churchRepository.findById(churchId).orElse(null);
+       return dutyRepository.findAllByChurch(church);
     }
 }
