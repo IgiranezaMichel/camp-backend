@@ -14,23 +14,31 @@ import com.campbackend.input.PageInput;
 import com.campbackend.modal.AccountHolder;
 import com.campbackend.pagination.AccountHolderPage;
 import com.campbackend.services.AccountHolderServices;
+
 @Controller
 public class AccountHolderController {
-    @Autowired private AccountHolderServices accountHolderServices;
+    @Autowired
+    private AccountHolderServices accountHolderServices;
+
     @MutationMapping
-    public ResponseEntity<String>saveOrUpdateAccountHolder(@Argument(name="accountHolderInput")AccountHolderInput accountHolderInput){
+    public ResponseEntity<String> saveOrUpdateAccountHolder(
+            @Argument(name = "accountHolderInput") AccountHolderInput accountHolderInput) {
         return accountHolderServices.saveOrUpdateAccountHolder(accountHolderInput);
     }
+
     @MutationMapping
-    public ResponseEntity<String>deleteAccountHolder(@Argument(name="id")UUID id){
+    public ResponseEntity<String> deleteAccountHolder(@Argument(name = "id") UUID id) {
         return accountHolderServices.deleteAccountHolder(id);
     }
+
     @QueryMapping
-    public AccountHolderPage accountHolderPage(@Argument(name = "input")PageInput page){
+    public AccountHolderPage accountHolderPage(@Argument(name = "input") PageInput page) {
         return accountHolderServices.accountPage(page);
     }
+
     @QueryMapping
-    public AccountHolder findByEmail(@Argument(name = "email")String email){
+    public AccountHolder findByEmail(@Argument(name = "email") String email) {
         return accountHolderServices.findByEmail(email);
     }
+
 }
