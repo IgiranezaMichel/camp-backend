@@ -1,6 +1,7 @@
 type Query{
 # AccountHolder
 accountHolderPage(input:PageInput):AccountHolderPage
+findByEmail(email:ID!):AccountHolder
 # Church
 churchPage(input:PageInput):ChurchPage
 findAllByChurchType(input:ChurchType):[Church]
