@@ -27,6 +27,6 @@ public class Levels {
     private int toAge;
     private byte[] photo;
     public String getPhoto(){
-        return Base64.encodeBase64String(photo);
+        return "data:image/png;base64,"+Base64.encodeBase64String(photo);
     }
 }
