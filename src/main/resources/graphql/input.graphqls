@@ -1,0 +1,7 @@
+input LevelInput{
+  id: ID
+  name: String
+  fromAge: Int
+  toAge: Int
+  base64Photo: String
+}
