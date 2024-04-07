@@ -1,0 +1,7 @@
+type Levels {
+  id: ID
+  name: String
+  fromAge: Int
+  toAge: Int
+  photo: String
+}
