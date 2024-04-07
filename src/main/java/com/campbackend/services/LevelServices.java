@@ -15,7 +15,7 @@ public class LevelServices {
 @Autowired private LevelRepository levelRepository;
 public ResponseEntity<String>saveOrUpdateLevel(LevelInput level){
     try {
-        byte [] image=Base64.getDecoder().decode(level.getBase64Photo().split("base64,")[0]);
+        byte [] image=Base64.getDecoder().decode(level.getBase64Photo().split("base64,")[1]);
         Levels data=levelRepository.save(new Levels(level.getId(), level.getName(), level.getFromAge(), level.getToAge(), image));
         return new ResponseEntity<>(data.getName()+" saved successful",HttpStatus.OK);
     } catch (Exception e) {
