@@ -1,0 +1,4 @@
+type Mutation{
+ saveOrUpdateLevel(levelInput:LevelInput):String
+ deleteLevel(id:ID):String
+}
