@@ -1,0 +1,4 @@
+type Query{
+# level
+getAllLevels:[Levels]
+}
