@@ -24,8 +24,7 @@ public class BookServices {
     public ResponseEntity<String> saveOrUpdateBook(BookInput bookInput) {
         try {
             Levels level = levelServices.findById(bookInput.getLevelId());
-            Book book = bookRepository.save(new Book(bookInput.getId(), bookInput.getName(), bookInput.getBase64File(),
-                    level, bookInput.getBase64Cover()));
+            Book book = bookRepository.save(new Book(bookInput.getId(),bookInput.getName(), bookInput.getBase64File(),level, bookInput.getBase64Cover(), bookInput.getAuthor(),bookInput.getPublicationDate(), bookInput.getPublisher(),bookInput.getSerialNumber()));
             return new ResponseEntity<>(book.getName() + " saved successful", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(" Something happen", HttpStatus.METHOD_NOT_ALLOWED);
