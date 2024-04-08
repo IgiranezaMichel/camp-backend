@@ -5,3 +5,19 @@ input LevelInput{
   toAge: Int
   base64Photo: String
 }
+input BookInput{
+  id:ID
+  name:String
+  base64File:String
+  levelId:String
+  base64Cover:String
+  author:String
+  publicationDate:String
+  publisher:String
+  serialNumber:String
+}
+input PageInput{
+  sort:String
+  pageNumber:Int
+  pageSize:Int
+}
