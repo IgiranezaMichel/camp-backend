@@ -1,0 +1,9 @@
+scalar LocalDateTime
+scalar LocalDate
+scalar Long
+type BookPage {
+  pageNumber: Int
+  pageSize: Int
+  total: Long
+  content: [Book]
+}
