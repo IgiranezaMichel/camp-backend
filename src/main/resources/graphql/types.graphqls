@@ -4,4 +4,17 @@ type Levels {
   fromAge: Int
   toAge: Int
   photo: String
+  bookList:[Book]
+}
+type Book{
+  id:ID
+  name:String
+  file:String
+  fileEncoding:String
+  levels:Levels
+  cover:String
+  author:String
+  publicationDate:String
+  publisher:String
+  serialNumber:String
 }
