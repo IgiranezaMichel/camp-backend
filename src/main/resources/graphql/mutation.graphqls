@@ -1,4 +1,8 @@
 type Mutation{
+# level
  saveOrUpdateLevel(levelInput:LevelInput):String
  deleteLevel(id:ID):String
+#  book
+ saveOrUpdateBook(bookInput:BookInput):String
+ deleteBook(id:ID):String
 }
