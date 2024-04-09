@@ -3,4 +3,5 @@ type Query{
 getAllLevels:[Levels]
 # book
 bookPage(input:PageInput):BookPage
+campPage(input:PageInput):CampPage
 }
