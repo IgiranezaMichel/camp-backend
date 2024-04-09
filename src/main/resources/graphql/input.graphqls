@@ -21,3 +21,14 @@ input PageInput{
   pageNumber:Int
   pageSize:Int
 }
+input CampInput{
+ title:String
+cost:Int 
+address:String 
+location:String 
+startingDate:String 
+endingDate:String 
+description:String 
+levels:[String]
+content:String
+}
