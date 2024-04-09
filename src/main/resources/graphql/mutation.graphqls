@@ -5,4 +5,7 @@ type Mutation{
 #  book
  saveOrUpdateBook(bookInput:BookInput):String
  deleteBook(id:ID):String
+#  camp
+ saveOrUpdateCamp(campInput:CampInput):String
+ deleteCamp(id:ID):String
 }
