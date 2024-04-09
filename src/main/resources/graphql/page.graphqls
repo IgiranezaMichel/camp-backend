@@ -7,3 +7,9 @@ type BookPage {
   total: Long
   content: [Book]
 }
+type CampPage {
+  pageNumber: Int
+  pageSize: Int
+  total: Long
+  content: [Camp]
+}
