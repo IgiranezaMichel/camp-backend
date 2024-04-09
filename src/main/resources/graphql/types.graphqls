@@ -18,3 +18,16 @@ type Book{
   publisher:String
   serialNumber:String
 }
+type Camp{
+id:ID
+title:String
+cost:Int 
+address:String
+location:String
+startingDate:String 
+endingDate:String 
+description:String 
+# levels:[Level]
+content:String
+timeStamp:String
+}
