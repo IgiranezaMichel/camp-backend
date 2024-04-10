@@ -1,3 +1,14 @@
+type AccountHolder{
+  id:ID
+  name:String
+  gender:String
+  phoneNumber:String
+  email:String
+  profilePicture:String
+  password:String
+  role:Role
+  timeStamp:String
+}
 type Levels {
   id: ID
   name: String
