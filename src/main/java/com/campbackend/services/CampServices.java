@@ -1,5 +1,6 @@
 package com.campbackend.services;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class CampServices {
     @Autowired private CampRepository campRepository;
     public ResponseEntity<String>saveOrUpdateCamp(Camp camp){
         try {
+            camp.setTimeStamp(LocalDateTime.now());
             Camp data=campRepository.save(camp);
             return new ResponseEntity<>(data.getTitle()+" saved successful",HttpStatus.OK);
         } catch (Exception e) {
