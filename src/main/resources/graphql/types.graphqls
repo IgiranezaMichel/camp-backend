@@ -14,6 +14,7 @@ type Church{
   name:String
   type:ChurchType
   church:Church
+  location:String
   churchList:[Church]
   listOfDuty:[Duty]
 }
