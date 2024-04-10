@@ -1,3 +1,13 @@
+input AccountHolderInput{
+  id:ID
+  name:String
+  gender:String
+  phoneNumber:String
+  email:String
+  profilePicture:String
+  password:String
+  role:Role
+}
 input LevelInput{
   id: ID
   name: String
