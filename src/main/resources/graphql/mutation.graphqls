@@ -2,7 +2,13 @@ type Mutation{
 # AccountHolder
  saveOrUpdateAccountHolder(accountHolderInput:AccountHolderInput):String
  deleteAccountHolder(id:ID):String
-# level
+ #  church
+ saveOrUpdateChurch(churchInput:ChurchInput):String
+ deleteChurch(id:ID):String
+ #  Duty
+ saveOrUpdateDuty(dutyInput:DutyInput):String
+ deleteDuty(id:ID):String
+ # level
  saveOrUpdateLevel(levelInput:LevelInput):String
  deleteLevel(id:ID):String
 #  book
