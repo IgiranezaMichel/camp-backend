@@ -1,4 +1,7 @@
 type Mutation{
+# AccountHolder
+ saveOrUpdateAccountHolder(accountHolderInput:AccountHolderInput):String
+ deleteAccountHolder(id:ID):String
 # level
  saveOrUpdateLevel(levelInput:LevelInput):String
  deleteLevel(id:ID):String
