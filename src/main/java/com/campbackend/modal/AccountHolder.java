@@ -6,6 +6,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import lombok.*;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import org.hibernate.annotations.UuidGenerator;
@@ -29,11 +32,17 @@ public class AccountHolder {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+    private LocalDateTime timeStamp;
+    public String getTimeStamp(){
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("dd-MMM-yyyy MM:ss a");
+        return dateTimeFormatter.format(timeStamp);
+    }
     public String getProfilePicture(){
         return Base64.getEncoder().encodeToString(profilePicture);
     }
     public AccountHolder(UUID id, String name, String gender, String phoneNumber, String email, String profilePicture,
             String password, Role role) {
+        this.timeStamp=LocalDateTime.now();
         this.id = id;
         this.name = name;
         this.gender = gender;
