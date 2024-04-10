@@ -5,3 +5,8 @@ enum Role {
   CHURCH
   CHRISTIAN
 }
+enum ChurchType {
+FIELD,
+DISTRICT,
+CHURCH
+}
