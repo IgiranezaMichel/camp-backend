@@ -16,7 +16,7 @@ import com.campbackend.services.ChurchServices;
 public class ChurchController {
     @Autowired private ChurchServices churchServices;
     @MutationMapping
-    public ResponseEntity<String>saveOrUpdateBook(@Argument(name="churchInput")ChurchInput churchInput){
+    public ResponseEntity<String>saveOrUpdateChurch(@Argument(name="churchInput")ChurchInput churchInput){
         return churchServices.saveOrUpdateChurch(churchInput);
     }
     @MutationMapping
