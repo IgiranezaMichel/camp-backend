@@ -19,3 +19,15 @@ type AccountHolderPage {
   total: Long
   content: [AccountHolder]
 }
+type ChurchPage {
+  pageNumber: Int
+  pageSize: Int
+  total: Long
+  content: [Church]
+}
+type DutyPage {
+  pageNumber: Int
+  pageSize: Int
+  total: Long
+  content: [Duty]
+}
