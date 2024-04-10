@@ -27,14 +27,16 @@ public class Church {
     private ChurchType type;
     @ManyToOne(targetEntity = Church.class,cascade = CascadeType.DETACH)
     private Church church;
+    private String location;
     @OneToMany(cascade = CascadeType.REFRESH,mappedBy ="church",targetEntity = Church.class)
     private List<Church> churchList;
     @OneToMany( cascade = CascadeType.ALL,mappedBy="church",targetEntity = Duty.class)
     private List<Duty>listOfDuty;
-    public Church(UUID id, String name, ChurchType type, Church church) {
+    public Church(UUID id, String name, ChurchType type, Church church,String location) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.church = church;
+        this.location=location;
     }
 }
