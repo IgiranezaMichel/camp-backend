@@ -1,6 +1,10 @@
 type Query{
 # AccountHolder
 accountHolderPage(input:PageInput):AccountHolderPage
+# Church
+churchPage(input:PageInput):ChurchPage
+# Duty
+dutyPage(input:PageInput):DutyPage
 # level
 getAllLevels:[Levels]
 # book
