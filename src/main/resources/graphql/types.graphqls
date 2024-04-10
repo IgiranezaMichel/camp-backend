@@ -9,6 +9,14 @@ type AccountHolder{
   role:Role
   timeStamp:String
 }
+
+type Duty{
+  id:ID
+  name:String
+  description:String
+  accountHolder:AccountHolder
+  church:Church
+}
 type Levels {
   id: ID
   name: String
