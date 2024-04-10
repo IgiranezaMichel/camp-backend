@@ -7,16 +7,17 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 
 import com.campbackend.input.AccountHolderInput;
 import com.campbackend.input.PageInput;
 import com.campbackend.pagination.AccountHolderPage;
 import com.campbackend.services.AccountHolderServices;
-
+@Controller
 public class AccountHolderController {
     @Autowired private AccountHolderServices accountHolderServices;
     @MutationMapping
-    public ResponseEntity<String>saveOrUpdateBook(@Argument(name="accountHolderInput")AccountHolderInput accountHolderInput){
+    public ResponseEntity<String>saveOrUpdateAccountHolder(@Argument(name="accountHolderInput")AccountHolderInput accountHolderInput){
         return accountHolderServices.saveOrUpdateAccountHolder(accountHolderInput);
     }
     @MutationMapping
