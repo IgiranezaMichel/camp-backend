@@ -9,7 +9,14 @@ type AccountHolder{
   role:Role
   timeStamp:String
 }
-
+type Church{
+  id:ID
+  name:String
+  type:ChurchType
+  church:Church
+  churchList:[Church]
+  listOfDuty:[Duty]
+}
 type Duty{
   id:ID
   name:String
