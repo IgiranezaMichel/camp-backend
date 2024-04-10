@@ -38,6 +38,6 @@ public class Camp {
         this.endingDate = endingDate;
         this.description = description;
         this.content = content;
-        this.timeStamp=LocalDateTime.now();
-    }
+        setTimeStamp(LocalDateTime.now()); 
+   }
 }
