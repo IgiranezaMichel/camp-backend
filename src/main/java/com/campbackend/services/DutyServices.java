@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.campbackend.input.DutyInput;
 import com.campbackend.input.PageInput;
@@ -15,7 +16,7 @@ import com.campbackend.modal.Church;
 import com.campbackend.modal.Duty;
 import com.campbackend.pagination.DutyPage;
 import com.campbackend.repository.DutyRepository;
-
+@Service
 public class DutyServices {
     @Autowired
     private DutyRepository dutyRepository;
