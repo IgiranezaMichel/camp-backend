@@ -12,6 +12,7 @@ input ChurchInput{
   id:ID
   name:String
   type:ChurchType
+  location:String
   churchId:String
 }
 input DutyInput{
