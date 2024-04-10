@@ -8,6 +8,19 @@ input AccountHolderInput{
   password:String
   role:Role
 }
+input ChurchInput{
+  id:ID
+  name:String
+  type:ChurchType
+  churchId:String
+}
+input DutyInput{
+  id:ID
+  name:String
+  description:String
+  accountHolderId:String
+  churchId:String
+}
 input LevelInput{
   id: ID
   name: String
