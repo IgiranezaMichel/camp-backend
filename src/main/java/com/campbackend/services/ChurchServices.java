@@ -22,7 +22,7 @@ public class ChurchServices {
     public ResponseEntity<String> saveOrUpdateChurch(ChurchInput churchInput) {
         try {
             Church churchData=this.findById(churchInput.getChurchId());
-           Church church=churchRepository.save(new Church(churchInput.getId(), churchInput.getName(), churchInput.getType(), churchData));
+           Church church=churchRepository.save(new Church(churchInput.getId(), churchInput.getName(), churchInput.getType(), churchData,churchInput.getLocation()));
             return new ResponseEntity<>(church.getName() + " saved successful", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(" Something happen", HttpStatus.METHOD_NOT_ALLOWED);
