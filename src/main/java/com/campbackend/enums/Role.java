@@ -1,9 +1,9 @@
 package com.campbackend.enums;
 
 public enum Role {
-ADMIN,
 UNION,
 FIELD,
+DISTRICT,
 CHURCH,
 CHRISTIAN
 }
