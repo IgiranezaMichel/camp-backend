@@ -1,6 +1,6 @@
 type Mutation{
 # AccountHolder
- saveOrUpdateAccountHolder(accountHolderInput:AccountHolderInput):String
+ saveOrUpdateAccountHolder(accountHolderInput:AccountHolderInput,churchId:ID!):String
  deleteAccountHolder(id:ID):String
  #  church
  saveOrUpdateChurch(churchInput:ChurchInput):String
