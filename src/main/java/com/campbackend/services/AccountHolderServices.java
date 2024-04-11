@@ -8,25 +8,41 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+import java.util.*;
 import com.campbackend.enums.Role;
+import com.campbackend.input.AccountHolderInput;
 import com.campbackend.input.PageInput;
 import com.campbackend.modal.AccountHolder;
+import com.campbackend.modal.Church;
+import com.campbackend.modal.Duty;
 import com.campbackend.pagination.AccountHolderPage;
 import com.campbackend.repository.AccountHolderRepository;
+import com.campbackend.repository.DutyRepository;
 
 @Service
 public class AccountHolderServices {
     @Autowired
     private AccountHolderRepository accountHolderRepository;
-
-    public ResponseEntity<String> saveOrUpdateAccountHolder(AccountHolder accountHolder) {
+    @Autowired private DutyRepository dutyRepository;
+    @Autowired private ChurchServices churchServices;
+    public ResponseEntity<String> saveOrUpdateAccountHolder(AccountHolderInput accountHolderInput,UUID churchId) {
         try {
-            accountHolder.setRole(Role.CHRISTIAN);
-            AccountHolder accountHolder2 = accountHolderRepository.save(new AccountHolder());
+            Random random=new Random();
+            String generatedPassword = random.ints(48, 113)
+              .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+              .limit(20)
+              .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+              .toString();
+            accountHolderInput.setRole(Role.CHRISTIAN);
+            accountHolderInput.setPassword(generatedPassword);
+            AccountHolder accountHolder2 = accountHolderRepository.save(new AccountHolder(accountHolderInput.getId(), accountHolderInput.getName(), accountHolderInput.getGender(), accountHolderInput.getPhoneNumber(), accountHolderInput.getEmail(), accountHolderInput.getBase64Profile(), accountHolderInput.getPassword(), accountHolderInput.getRole(), accountHolderInput.getDob()));
+             // add duty
+            //  find church
+            Church church=churchServices.findById(churchId);
+             dutyRepository.save(new Duty(null, "christian", "christian", accountHolder2, church));
             return new ResponseEntity<>(accountHolder2.getName() + " saved successful", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(" Something happen", HttpStatus.METHOD_NOT_ALLOWED);
+            return new ResponseEntity<>(" Something Wrong happen", HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
 
