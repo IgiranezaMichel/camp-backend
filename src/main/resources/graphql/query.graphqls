@@ -7,7 +7,8 @@ churchPage(input:PageInput):ChurchPage
 findAllByChurchType(input:ChurchType):[Church]
 # Duty
 dutyPage(input:PageInput):DutyPage
-findUserWorkingAtTheSameChurch(church:ID):[Duty]
+findUserWorkingAtTheSameChurch(church:ID!):[Duty]
+findAccountHolderHavingSameRole(input:PageInput,role:Role!):DutyPage
 # level
 getAllLevels:[Levels]
 # book
