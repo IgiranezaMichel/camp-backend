@@ -6,6 +6,7 @@ type AccountHolder{
   email:String
   profilePicture:String
   password:String
+  dob:String
   role:Role
   timeStamp:String
 }
