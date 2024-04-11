@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.campbackend.enums.Role;
 import com.campbackend.input.DutyInput;
 import com.campbackend.input.PageInput;
 import com.campbackend.modal.AccountHolder;
@@ -17,11 +18,13 @@ import com.campbackend.modal.Duty;
 import com.campbackend.pagination.DutyPage;
 import com.campbackend.repository.ChurchRepository;
 import com.campbackend.repository.DutyRepository;
+
 @Service
 public class DutyServices {
     @Autowired
     private DutyRepository dutyRepository;
-    @Autowired ChurchRepository churchRepository;
+    @Autowired
+    ChurchRepository churchRepository;
     private AccountHolderServices accountHolderServices;
     private ChurchServices churchServices;
 
@@ -62,7 +65,15 @@ public class DutyServices {
     }
 
     public List<Duty> findUserWorkingAtTheSameChurch(UUID churchId) {
-       Church church=churchRepository.findById(churchId).orElse(null);
-       return dutyRepository.findAllByChurch(church);
+        Church church = churchRepository.findById(churchId).orElse(null);
+        return dutyRepository.findAllByChurch(church);
+    }
+
+    public DutyPage findAccountHolderHavingSameRole(PageInput page, Role role) {
+        org.springframework.data.domain.Page<Duty> pagination = dutyRepository
+                .findAllByAccountHolderRole(role,
+                        PageRequest.of(page.getPageNumber(), page.getPageSize(), Sort.by(page.getSort())));
+        return new DutyPage(pagination.getNumber(), pagination.getTotalPages(), pagination.getTotalElements(),
+                pagination.getContent());
     }
 }
