@@ -7,6 +7,7 @@ churchPage(input:PageInput):ChurchPage
 findAllByChurchType(input:ChurchType):[Church]
 # Duty
 dutyPage(input:PageInput):DutyPage
+findUserWorkingAtTheSameChurch(church:ID):[Duty]
 # level
 getAllLevels:[Levels]
 # book
