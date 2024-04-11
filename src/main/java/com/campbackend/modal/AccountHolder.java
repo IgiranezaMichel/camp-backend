@@ -13,7 +13,7 @@ import java.util.*;
 
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.annotations.UuidGenerator.Style;
-
+import java.time.*;
 import com.campbackend.enums.Role;
 
 @NoArgsConstructor
@@ -25,6 +25,7 @@ public class AccountHolder {
     private UUID id;
     private String name;
     private String gender;
+    private LocalDate dob;
     private String phoneNumber;
     private String email;
     @Lob
@@ -38,10 +39,10 @@ public class AccountHolder {
         return dateTimeFormatter.format(timeStamp);
     }
     public String getProfilePicture(){
-        return Base64.getEncoder().encodeToString(profilePicture);
+        return "data:image/png;base64,"+Base64.getEncoder().encodeToString(profilePicture);
     }
     public AccountHolder(UUID id, String name, String gender, String phoneNumber, String email, String profilePicture,
-            String password, Role role) {
+            String password, Role role,LocalDate dob) {
         this.timeStamp=LocalDateTime.now();
         this.id = id;
         this.name = name;
@@ -51,5 +52,6 @@ public class AccountHolder {
         this.profilePicture = Base64.getDecoder().decode(profilePicture.split("base64,")[1]);
         this.password = password;
         this.role = role;
+        this.dob=dob;
     }
 }
