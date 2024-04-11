@@ -8,6 +8,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
+import com.campbackend.enums.Role;
 import com.campbackend.input.DutyInput;
 import com.campbackend.input.PageInput;
 import com.campbackend.modal.Duty;
@@ -33,5 +34,9 @@ public class DutyController {
     @QueryMapping
     public DutyPage dutyPage(@Argument(name = "input")PageInput page){
         return dutyServices.dutyPage(page);
+    }
+    @QueryMapping
+    public DutyPage findAccountHolderHavingSameRole(@Argument(name = "input")PageInput page,@Argument(name = "role")Role role){
+        return dutyServices.findAccountHolderHavingSameRole(page,role);
     }
 }
