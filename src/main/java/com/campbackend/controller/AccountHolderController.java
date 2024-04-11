@@ -22,8 +22,8 @@ public class AccountHolderController {
 
     @MutationMapping
     public ResponseEntity<String> saveOrUpdateAccountHolder(
-            @Argument(name = "accountHolderInput") AccountHolderInput accountHolderInput) {
-        return accountHolderServices.saveOrUpdateAccountHolder(accountHolderInput);
+            @Argument(name = "accountHolderInput") AccountHolderInput accountHolderInput,@Argument(name = "churchId")UUID churchId) {
+        return accountHolderServices.saveOrUpdateAccountHolder(accountHolderInput,churchId);
     }
 
     @MutationMapping
@@ -40,5 +40,6 @@ public class AccountHolderController {
     public AccountHolder findByEmail(@Argument(name = "email") String email) {
         return accountHolderServices.findByEmail(email);
     }
+    
 
 }
