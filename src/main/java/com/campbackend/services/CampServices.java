@@ -14,7 +14,7 @@ import com.campbackend.input.PageInput;
 import com.campbackend.modal.Camp;
 import com.campbackend.pagination.CampPage;
 import com.campbackend.repository.CampRepository;
-
+import java.time.*;
 @Service
 public class CampServices {
     @Autowired private CampRepository campRepository;
@@ -41,6 +41,14 @@ public class CampServices {
     }
     public CampPage campPage(PageInput page){
         org.springframework.data.domain.Page<Camp> pagination=campRepository.findAll(PageRequest.of(page.getPageNumber(),page.getPageSize(),Sort.by(page.getSort())));
+        return new CampPage(pagination.getNumber(), pagination.getTotalPages(), pagination.getTotalElements(), pagination.getContent());
+     }
+     public CampPage inActiveCamp(PageInput page){
+        org.springframework.data.domain.Page<Camp> pagination=campRepository.findAllByEndingDateBefore(LocalDate.now(),PageRequest.of(page.getPageNumber(),page.getPageSize(),Sort.by(page.getSort())));
+        return new CampPage(pagination.getNumber(), pagination.getTotalPages(), pagination.getTotalElements(), pagination.getContent());
+     }
+     public CampPage activeCamp(PageInput page){
+        org.springframework.data.domain.Page<Camp> pagination=campRepository.findAllByEndingDateAfter(LocalDate.now(),PageRequest.of(page.getPageNumber(),page.getPageSize(),Sort.by(page.getSort())));
         return new CampPage(pagination.getNumber(), pagination.getTotalPages(), pagination.getTotalElements(), pagination.getContent());
      }
 }
