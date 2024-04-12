@@ -28,4 +28,8 @@ public class CampController {
     public CampPage campPage(@Argument(name = "input")PageInput page){
         return campServices.campPage(page);
     }
+    @QueryMapping
+    public CampPage activeCamp(@Argument(name = "input")PageInput page){
+        return campServices.activeCamp(page);
+    }
 }
