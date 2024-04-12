@@ -45,7 +45,9 @@ public class AccountHolderServices {
             return new ResponseEntity<>(" Something Wrong happen", HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
-
+    public void updateAccountHolder(AccountHolder accountHolder){
+        accountHolderRepository.save(accountHolder);
+    }
     public AccountHolder findById(UUID id) {
         return accountHolderRepository.findById(id).orElseThrow();
     }
