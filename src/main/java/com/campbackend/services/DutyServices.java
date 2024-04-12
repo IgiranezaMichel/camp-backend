@@ -24,8 +24,10 @@ public class DutyServices {
     @Autowired
     private DutyRepository dutyRepository;
     @Autowired
-    ChurchRepository churchRepository;
+    private ChurchRepository churchRepository;
+    @Autowired
     private AccountHolderServices accountHolderServices;
+    @Autowired
     private ChurchServices churchServices;
 
     public ResponseEntity<String> saveOrUpdateDuty(DutyInput dutyInput) {
@@ -75,5 +77,26 @@ public class DutyServices {
                         PageRequest.of(page.getPageNumber(), page.getPageSize(), Sort.by(page.getSort())));
         return new DutyPage(pagination.getNumber(), pagination.getTotalPages(), pagination.getTotalElements(),
                 pagination.getContent());
+    }
+
+    public ResponseEntity<String> updateAccountHolderDuty(DutyInput duty, Role role) {
+        try {
+            AccountHolder accountHolder = accountHolderServices.findById(duty.getAccountHolderId());
+            Church church = churchServices.findById(duty.getChurchId());
+            Duty accountHolderDuty = dutyRepository.findByAccountHolder(accountHolder);
+            if (accountHolder != null) {
+                accountHolder.setRole(role);
+                accountHolderServices.updateAccountHolder(accountHolder);
+                accountHolderDuty = dutyRepository.save(new Duty(accountHolderDuty.getId(), duty.getName(),
+                        duty.getDescription(), accountHolder, church));
+                return new ResponseEntity<>(accountHolderDuty.getAccountHolder().getName() + "Saved successfull",
+                        HttpStatus.OK);
+            } else {
+                throw new Exception("Please create account first");
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error pls try some again", HttpStatus.METHOD_NOT_ALLOWED);
+        }
     }
 }
