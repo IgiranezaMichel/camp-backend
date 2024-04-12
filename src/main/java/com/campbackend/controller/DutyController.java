@@ -27,6 +27,10 @@ public class DutyController {
     public ResponseEntity<String>deleteDuty(@Argument(name="id")UUID level){
         return dutyServices.deleteDuty(level);
     }
+    @MutationMapping
+    ResponseEntity<String>updateAccountHolderDuty(@Argument(name = "duty")DutyInput duty,@Argument(name = "role")Role role){
+        return dutyServices.updateAccountHolderDuty(duty,role);
+    }
     @QueryMapping
     public List<Duty>findUserWorkingAtTheSameChurch(@Argument(name="church")UUID churchId){
         return dutyServices.findUserWorkingAtTheSameChurch(churchId);
