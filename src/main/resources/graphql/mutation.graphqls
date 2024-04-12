@@ -8,6 +8,7 @@ type Mutation{
  #  Duty
  saveOrUpdateDuty(dutyInput:DutyInput):String
  deleteDuty(id:ID):String
+updateAccountHolderDuty(duty:DutyInput,role:Role):String
  # level
  saveOrUpdateLevel(levelInput:LevelInput):String
  deleteLevel(id:ID):String
