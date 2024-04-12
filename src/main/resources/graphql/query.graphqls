@@ -15,4 +15,5 @@ getAllLevels:[Levels]
 bookPage(input:PageInput):BookPage
 # camp
 campPage(input:PageInput):CampPage
+activeCamp(input:PageInput):CampPage
 }
