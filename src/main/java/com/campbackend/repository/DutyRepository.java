@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.campbackend.enums.Role;
+import com.campbackend.modal.AccountHolder;
 import com.campbackend.modal.Church;
 import com.campbackend.modal.Duty;
 public interface DutyRepository extends JpaRepository<Duty,UUID> {
@@ -16,5 +17,7 @@ public interface DutyRepository extends JpaRepository<Duty,UUID> {
     List<Duty> findAllByChurch(Church church);
     @Query("SELECT d FROM Duty d WHERE d.accountHolder.role = ?1")
     Page<Duty> findAllByAccountHolderRole(Role role, PageRequest of);
+    boolean existsByAccountHolder(AccountHolder accountHolder);
+    Duty findByAccountHolder(AccountHolder accountHolder);
 
 }
