@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.annotations.UuidGenerator.Style;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class Camp {
     private LocalDate endingDate;
     private String description;
     // levels
+    @Column(columnDefinition = "text")
     private String content;
     private LocalDateTime timeStamp;
     public Camp(UUID id, String title, int cost, String address, String location, LocalDate startingDate,
