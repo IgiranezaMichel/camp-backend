@@ -1,5 +1,6 @@
 package com.campbackend.modal;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -27,6 +28,7 @@ public class AccountHolder {
     private String gender;
     private LocalDate dob;
     private String phoneNumber;
+    @Column(unique = true)
     private String email;
     @Lob
     private byte[] profilePicture;
