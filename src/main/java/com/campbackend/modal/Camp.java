@@ -13,6 +13,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,7 +31,8 @@ public class Camp {
     private LocalDate startingDate; 
     private LocalDate endingDate;
     private String description;
-    // levels
+    @ManyToOne(cascade = CascadeType.ALL,targetEntity = Levels.class)
+    private Levels levels;
     @Column(columnDefinition = "text")
     private String content;
     private LocalDateTime timeStamp;
