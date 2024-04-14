@@ -28,6 +28,8 @@ public class Levels {
     private int fromAge;
     private int toAge;
     private byte[] photo;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "levels",targetEntity = Camp.class)
+    private List<Camp>campList;
     public String getPhoto(){
         return "data:image/png;base64,"+Base64.encodeBase64String(photo);
     }
