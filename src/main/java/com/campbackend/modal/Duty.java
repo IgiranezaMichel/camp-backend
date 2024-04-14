@@ -2,6 +2,8 @@ package com.campbackend.modal;
 
 import java.util.UUID;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.annotations.UuidGenerator.Style;
 
@@ -20,9 +22,11 @@ public class Duty {
 private UUID id;
 private String name;
 private String description;
-@OneToOne
+@OneToOne(cascade = CascadeType.ALL,orphanRemoval = true,optional = false)
+@OnDelete(action = OnDeleteAction.CASCADE)
 private AccountHolder accountHolder;
-@ManyToOne(cascade = CascadeType.MERGE,targetEntity = Church.class)
+@ManyToOne(cascade = CascadeType.ALL,targetEntity = Church.class)
+@OnDelete(action = OnDeleteAction.CASCADE)
 private Church church;
 public Duty(UUID id, String name, String description, AccountHolder accountHolder, Church church) {
     this.id = id;
