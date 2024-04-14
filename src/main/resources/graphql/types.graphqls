@@ -68,3 +68,9 @@ type CampMentor{
   role:String
   description:String
 }
+type CampApplicant{
+  id:ID
+  camp:Camp
+  accountHolder:AccountHolder
+  timeStamp:LocalDate
+}
