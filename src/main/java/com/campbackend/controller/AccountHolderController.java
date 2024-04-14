@@ -36,7 +36,7 @@ public class AccountHolderController {
         return accountHolderServices.accountPage(page);
     }
 
-    @QueryMapping
+    @MutationMapping
     public AccountHolder findByEmail(@Argument(name = "email") String email) {
         return accountHolderServices.findByEmail(email);
     }
