@@ -56,6 +56,14 @@ startingDate:String
 endingDate:String 
 description:String 
 # levels:[Level]
+campMentorList:[CampMentor]
 content:String
 timeStamp:String
+}
+type CampMentor{
+  id:ID
+  camp:Camp
+  accountHolder:AccountHolder
+  role:String
+  description:String
 }
