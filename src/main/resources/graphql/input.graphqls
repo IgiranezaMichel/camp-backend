@@ -57,3 +57,10 @@ description:String
 levels:[String]
 content:String
 }
+input CampMentorInput{
+  id:ID
+  campId:String
+  accountHolderEmail:String
+  role:String
+  description:String
+}
