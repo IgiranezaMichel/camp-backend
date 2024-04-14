@@ -1,11 +1,13 @@
 package com.campbackend.modal;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -36,6 +38,8 @@ public class AccountHolder {
     @Enumerated(EnumType.STRING)
     private Role role;
     private LocalDateTime timeStamp;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "accountHolder",targetEntity = CampMentor.class)
+    private List<CampMentor>campMentorList;
     public String getTimeStamp(){
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("dd-MMM-yyyy MM:ss a");
         return dateTimeFormatter.format(timeStamp);
