@@ -1,7 +1,6 @@
 type Query{
 # AccountHolder
 accountHolderPage(input:PageInput):AccountHolderPage
-findByEmail(email:ID!):AccountHolder
 # Church
 churchPage(input:PageInput):ChurchPage
 findAllByChurchType(input:ChurchType):[Church]
@@ -16,4 +15,6 @@ bookPage(input:PageInput):BookPage
 # camp
 campPage(input:PageInput):CampPage
 activeCamp(input:PageInput):CampPage
+# campMentor
+getCampMentorList(campId:ID):CampMentor
 }
