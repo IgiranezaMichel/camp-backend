@@ -2,6 +2,7 @@ type Mutation{
 # AccountHolder
  saveOrUpdateAccountHolder(accountHolderInput:AccountHolderInput,churchId:ID!):String
  deleteAccountHolder(id:ID):String
+ findByEmail(email:ID!):AccountHolder
  #  church
  saveOrUpdateChurch(churchInput:ChurchInput):String
  deleteChurch(id:ID):String
@@ -18,4 +19,7 @@ updateAccountHolderDuty(duty:DutyInput,role:Role):String
 #  camp
  saveOrUpdateCamp(campInput:CampInput):String
  deleteCamp(id:ID):String
+#  camp mentor
+saveOrUpdateCampMentor(input:CampMentorInput):String
+deleteCampMentor(id:ID):String
 }
