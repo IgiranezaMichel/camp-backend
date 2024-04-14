@@ -33,6 +33,7 @@ type Levels {
   toAge: Int
   photo: String
   bookList:[Book]
+  campList:[Camp]
 }
 type Book{
   id:ID
