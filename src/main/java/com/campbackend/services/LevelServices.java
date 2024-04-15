@@ -10,6 +10,9 @@ import com.campbackend.input.LevelInput;
 import com.campbackend.modal.Levels;
 import com.campbackend.repository.LevelRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+
 @Service
 public class LevelServices {
 @Autowired private LevelRepository levelRepository;
@@ -36,5 +39,17 @@ public ResponseEntity<String>delete(UUID id){
 }
 public List<Levels> getAll(){
     return levelRepository.findAll();
+}
+@Autowired private EntityManager entityManager;
+public UUID levelBetweenUserDob(int age){
+try {
+TypedQuery<Levels>query=entityManager.createQuery("select u from Levels u WHERE u.fromAge<=:age AND u.toAge>=:age",Levels.class);
+query.setParameter("age", age);
+Levels levelList=query.getSingleResult();
+if(levelList==null) throw new Exception("Level not found exception");
+return levelList.getId();
+} catch (Exception e) {
+   return null;
+}
 }
 }
