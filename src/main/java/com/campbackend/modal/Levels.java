@@ -5,11 +5,11 @@ import java.util.UUID;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.annotations.UuidGenerator.Style;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,8 +28,8 @@ public class Levels {
     private int fromAge;
     private int toAge;
     private byte[] photo;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "levels",targetEntity = Camp.class)
-    private List<Camp>campList;
+    @ManyToMany(mappedBy = "levels")
+    private List<Camp> campList;
     public String getPhoto(){
         return "data:image/png;base64,"+Base64.encodeBase64String(photo);
     }
