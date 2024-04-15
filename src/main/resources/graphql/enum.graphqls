@@ -10,3 +10,8 @@ FIELD,
 DISTRICT,
 CHURCH
 }
+enum CampApplicantStatus {
+APPENDING,
+ATTEND,
+ABSENT
+}
