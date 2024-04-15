@@ -27,4 +27,8 @@ public class BookController {
     public BookPage bookPage(@Argument(name = "input")PageInput page){
         return bookServices.bookPage(page);
     }
+    @QueryMapping
+    public BookPage accountHolderBookPage(@Argument(name = "input")PageInput page,@Argument(name = "accountHolderId")UUID accountHolderId){
+        return bookServices.accountHolderBookPage(page,accountHolderId);
+    }
 }
