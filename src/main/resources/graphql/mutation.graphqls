@@ -22,4 +22,6 @@ updateAccountHolderDuty(duty:DutyInput,role:Role):String
 #  camp mentor
 saveOrUpdateCampMentor(input:CampMentorInput):String
 deleteCampMentor(id:ID):String
+# campApplication
+saveOrUpdateCampApplicant(campApplicantInput:CampApplicantInput):String 
 }
