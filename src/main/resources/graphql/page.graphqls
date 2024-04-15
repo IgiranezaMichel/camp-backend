@@ -31,3 +31,9 @@ type DutyPage {
   total: Long
   content: [Duty]
 }
+type CampApplicantPage {
+  pageNumber: Int
+  pageSize: Int
+  total: Long
+  content: [CampApplicant]
+}
