@@ -73,4 +73,5 @@ type CampApplicant{
   camp:Camp
   accountHolder:AccountHolder
   timeStamp:LocalDate
+  campApplicantStatus:CampApplicantStatus
 }
