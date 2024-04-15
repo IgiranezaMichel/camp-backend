@@ -54,7 +54,7 @@ location:String
 startingDate:String 
 endingDate:String 
 description:String 
-levels:[String]
+levelArr:ID
 content:String
 }
 input CampMentorInput{
@@ -63,4 +63,10 @@ input CampMentorInput{
   accountHolderEmail:String
   role:String
   description:String
+}
+input CampApplicantInput{
+  id:ID
+  campId:String
+  accountHolderId:String
+  campApplicantStatus:CampApplicantStatus
 }
