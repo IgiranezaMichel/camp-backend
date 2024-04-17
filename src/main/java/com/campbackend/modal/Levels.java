@@ -30,6 +30,8 @@ public class Levels {
     private byte[] photo;
     @ManyToMany(mappedBy = "levels")
     private List<Camp> campList;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "levels",targetEntity = CampApplicant.class)
+    private List<CampApplicant>campApplicantLevels;
     public String getPhoto(){
         return "data:image/png;base64,"+Base64.encodeBase64String(photo);
     }
