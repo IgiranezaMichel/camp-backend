@@ -19,7 +19,8 @@ activeCamp(input:PageInput):CampPage
 inactiveCamp(input:PageInput):CampPage
 # campMentor
 getCampMentorList(campId:ID):CampMentor
-# camp applicant page
+# camp applicant 
 accountHolderCampApplicationPage(input:PageInput,email:String):CampApplicantPage
+campApplicantPage(input:PageInput,campId:ID):CampApplicantPage
 
 }
