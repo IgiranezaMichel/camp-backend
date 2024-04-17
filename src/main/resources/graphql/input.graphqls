@@ -69,4 +69,7 @@ input CampApplicantInput{
   campId:String
   accountHolderId:String
   campApplicantStatus:CampApplicantStatus
+  paymentCode: String
+  telephone: String
+  comment: String
 }
