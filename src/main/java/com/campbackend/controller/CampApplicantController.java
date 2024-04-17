@@ -9,6 +9,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
+import com.campbackend.enums.CampApplicantStatus;
 import com.campbackend.input.CampApplicantInput;
 import com.campbackend.input.CampApplicantPage;
 import com.campbackend.input.PageInput;
@@ -24,7 +25,11 @@ public class CampApplicantController {
             @Argument(name = "campApplicantInput") CampApplicantInput campApplicantInput) {
         return campApplicantServices.saveOrUpdateCampApplicant(campApplicantInput);
     }
-
+    @MutationMapping
+    public ResponseEntity<String> updateCampApplicantStatus(
+            @Argument(name = "campApplicantId")UUID campApplicantInput,@Argument(name = "status")CampApplicantStatus status,@Argument(name = "comment")String comment) {
+        return campApplicantServices.updateCampApplicantStatus(campApplicantInput, status, comment);
+    }
     @QueryMapping
     public CampApplicantPage campApplicantPage(@Argument(name = "input") PageInput page,@Argument(name = "campId")UUID campId) {
         return campApplicantServices.campApplicantPage(campId,page);
@@ -35,4 +40,5 @@ public class CampApplicantController {
             @Argument(name = "email") String email) {
         return campApplicantServices.accountHolderCampApplicationPage(page, email);
     }
+    
 }
