@@ -1,5 +1,7 @@
 package com.campbackend.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -24,8 +26,8 @@ public class CampApplicantController {
     }
 
     @QueryMapping
-    public CampApplicantPage campApplicantPage(@Argument(name = "input") PageInput page) {
-        return campApplicantServices.campApplicantPage(page);
+    public CampApplicantPage campApplicantPage(@Argument(name = "input") PageInput page,@Argument(name = "campId")UUID campId) {
+        return campApplicantServices.campApplicantPage(campId,page);
     }
 
     @QueryMapping
