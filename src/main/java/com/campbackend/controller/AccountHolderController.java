@@ -40,6 +40,9 @@ public class AccountHolderController {
     public AccountHolder findByEmail(@Argument(name = "email") String email) {
         return accountHolderServices.findByEmail(email);
     }
-    
+    @MutationMapping
+    public ResponseEntity<String> updateAccountHolderPassword(@Argument(name = "accountHolderEmail")String accountHolderEmail,@Argument(name = "oldPassword")String oldPassword,@Argument(name = "newPassword")String newPassword){
+        return accountHolderServices.updateAccountHolderPassword(accountHolderEmail, oldPassword, newPassword);
+    }
 
 }
