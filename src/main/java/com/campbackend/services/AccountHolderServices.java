@@ -2,6 +2,7 @@ package com.campbackend.services;
 
 import java.util.UUID;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -72,5 +73,16 @@ public class AccountHolderServices {
                 .findAll(PageRequest.of(page.getPageNumber(), page.getPageSize(), Sort.by(page.getSort())));
         return new AccountHolderPage(pagination.getNumber(), pagination.getTotalPages(), pagination.getTotalElements(),
                 pagination.getContent());
+    }
+    public ResponseEntity<String> updateAccountHolderPassword(String accountHolderEmail,String oldPassword,String newPassword){
+        AccountHolder accountHolder=this.findByEmail(accountHolderEmail);
+        if(accountHolder!=null){
+           if(accountHolder.getPassword().equals(oldPassword)){
+            accountHolder.setPassword(BCrypt.hashpw(newPassword,BCrypt.gensalt() ));
+            accountHolderRepository.save(accountHolder);
+            return new ResponseEntity<>(accountHolder.getName()+" Your password has changed successful",HttpStatus.OK);
+           }
+        }
+        return new ResponseEntity<>("Incorrect credential please try again",HttpStatus.METHOD_NOT_ALLOWED);
     }
 }
