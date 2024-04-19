@@ -44,7 +44,7 @@ public class CampApplicantServices {
                 applicationExist.setTelephone(campApplicant.getTelephone());
                 applicationExist.setComment(campApplicant.getComment());
                 applicantRepository.save(applicationExist);
-                return new ResponseEntity<>("Saved successful", HttpStatus.OK);
+                return new ResponseEntity<>(" Updated successful", HttpStatus.OK);
             }
             UUID levelId = levelServices
                     .levelBetweenUserDob(Math.abs(Period.between(LocalDate.now(), accountHolder.getDob()).getYears()));
@@ -81,7 +81,7 @@ public class CampApplicantServices {
             return new ResponseEntity<>("Application not found",HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
-    public ResponseEntity<String> deleteBook(UUID id) {
+    public ResponseEntity<String> deleteCampApplicant(UUID id) {
         try {
             CampApplicant campApplicant = this.findById(id);
             applicantRepository.delete(campApplicant);
