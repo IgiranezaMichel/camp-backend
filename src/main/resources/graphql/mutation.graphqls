@@ -4,6 +4,7 @@ type Mutation{
  deleteAccountHolder(id:ID):String
  findByEmail(email:ID!):AccountHolder
 updateAccountHolderPassword(accountHolderEmail:String,oldPassword:String ,newPassword:String):String
+login(email: $email, password: $password):AccountHolder
  #  church
  saveOrUpdateChurch(churchInput:ChurchInput):String
  deleteChurch(id:ID):String
