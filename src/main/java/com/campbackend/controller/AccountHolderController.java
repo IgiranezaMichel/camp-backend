@@ -44,5 +44,9 @@ public class AccountHolderController {
     public ResponseEntity<String> updateAccountHolderPassword(@Argument(name = "accountHolderEmail")String accountHolderEmail,@Argument(name = "oldPassword")String oldPassword,@Argument(name = "newPassword")String newPassword){
         return accountHolderServices.updateAccountHolderPassword(accountHolderEmail, oldPassword, newPassword);
     }
+    @MutationMapping
+   public ResponseEntity<AccountHolder> login(@Argument(name = "email")String email,@Argument(name="password") String password){
+    return accountHolderServices.login(email,password);
+    }
 
 }
