@@ -6,7 +6,6 @@ input AccountHolderInput{
   phoneNumber:String
   email:String
   base64Profile:String
-  password:String
   role:Role
 }
 input ChurchInput{
