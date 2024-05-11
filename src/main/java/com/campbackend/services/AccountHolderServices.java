@@ -1,7 +1,5 @@
 package com.campbackend.services;
 
-import java.util.UUID;
-
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -84,5 +82,10 @@ public class AccountHolderServices {
            }
         }
         return new ResponseEntity<>("Incorrect credential please try again",HttpStatus.METHOD_NOT_ALLOWED);
+    }
+    public ResponseEntity<AccountHolder> login(String email,String password){
+        AccountHolder accountHolder= accountHolderRepository.findByEmailAndPassword(email,password);
+        if(accountHolder!=null)return new ResponseEntity<>(accountHolder,HttpStatus.OK);
+        else return new ResponseEntity<>(accountHolder,HttpStatus.METHOD_NOT_ALLOWED);
     }
 }
