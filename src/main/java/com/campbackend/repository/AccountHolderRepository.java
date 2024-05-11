@@ -8,4 +8,5 @@ import com.campbackend.modal.AccountHolder;
 
 public interface AccountHolderRepository extends JpaRepository<AccountHolder,UUID>{
     AccountHolder findByEmail(String id);
+    AccountHolder findByEmailAndPassword(String email,String password);
 }
