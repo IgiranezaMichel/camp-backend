@@ -23,7 +23,7 @@ private UUID id;
 private String name;
 private String description;
 @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true,optional = false)
-@OnDelete(action = OnDeleteAction.CASCADE)
+@OnDelete(action = OnDeleteAction.SET_NULL)
 private AccountHolder accountHolder;
 @ManyToOne(cascade = CascadeType.ALL,targetEntity = Church.class)
 @OnDelete(action = OnDeleteAction.CASCADE)
