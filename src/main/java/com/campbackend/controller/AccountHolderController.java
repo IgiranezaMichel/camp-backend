@@ -1,14 +1,12 @@
 package com.campbackend.controller;
 
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-
 import com.campbackend.input.AccountHolderInput;
 import com.campbackend.input.PageInput;
 import com.campbackend.modal.AccountHolder;
@@ -45,7 +43,7 @@ public class AccountHolderController {
         return accountHolderServices.updateAccountHolderPassword(accountHolderEmail, oldPassword, newPassword);
     }
     @MutationMapping
-   public ResponseEntity<AccountHolder> login(@Argument(name = "email")String email,@Argument(name="password") String password){
+   public  AccountHolder login(@Argument(name = "email")String email,@Argument(name="password") String password){
     return accountHolderServices.login(email,password);
     }
 
