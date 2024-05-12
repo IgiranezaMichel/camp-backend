@@ -22,31 +22,39 @@ import com.campbackend.repository.DutyRepository;
 public class AccountHolderServices {
     @Autowired
     private AccountHolderRepository accountHolderRepository;
-    @Autowired private DutyRepository dutyRepository;
-    @Autowired private ChurchServices churchServices;
-    public ResponseEntity<String> saveOrUpdateAccountHolder(AccountHolderInput accountHolderInput,UUID churchId) {
+    @Autowired
+    private DutyRepository dutyRepository;
+    @Autowired
+    private ChurchServices churchServices;
+
+    public ResponseEntity<String> saveOrUpdateAccountHolder(AccountHolderInput accountHolderInput, UUID churchId) {
         try {
-            Random random=new Random();
+            Random random = new Random();
             String generatedPassword = random.ints(48, 113)
-              .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-              .limit(20)
-              .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-              .toString();
+                    .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                    .limit(20)
+                    .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                    .toString();
             accountHolderInput.setRole(Role.CHRISTIAN);
             accountHolderInput.setPassword(generatedPassword);
-            AccountHolder accountHolder2 = accountHolderRepository.save(new AccountHolder(accountHolderInput.getId(), accountHolderInput.getName(), accountHolderInput.getGender(), accountHolderInput.getPhoneNumber(), accountHolderInput.getEmail(), accountHolderInput.getBase64Profile(), accountHolderInput.getPassword(), accountHolderInput.getRole(), accountHolderInput.getDob()));
-             // add duty
-            //  find church
-            Church church=churchServices.findById(churchId);
-             dutyRepository.save(new Duty(null, "christian", "christian", accountHolder2, church));
+            AccountHolder accountHolder2 = accountHolderRepository.save(new AccountHolder(accountHolderInput.getId(),
+                    accountHolderInput.getName(), accountHolderInput.getGender(), accountHolderInput.getPhoneNumber(),
+                    accountHolderInput.getEmail(), accountHolderInput.getBase64Profile(),
+                    accountHolderInput.getPassword(), accountHolderInput.getRole(), accountHolderInput.getDob()));
+            // add duty
+            // find church
+            Church church = churchServices.findById(churchId);
+            dutyRepository.save(new Duty(null, "christian", "christian", accountHolder2, church));
             return new ResponseEntity<>(accountHolder2.getName() + " saved successful", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(" Something Wrong happen", HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
-    public void updateAccountHolder(AccountHolder accountHolder){
+
+    public void updateAccountHolder(AccountHolder accountHolder) {
         accountHolderRepository.save(accountHolder);
     }
+
     public AccountHolder findById(UUID id) {
         return accountHolderRepository.findById(id).orElseThrow();
     }
@@ -72,20 +80,23 @@ public class AccountHolderServices {
         return new AccountHolderPage(pagination.getNumber(), pagination.getTotalPages(), pagination.getTotalElements(),
                 pagination.getContent());
     }
-    public ResponseEntity<String> updateAccountHolderPassword(String accountHolderEmail,String oldPassword,String newPassword){
-        AccountHolder accountHolder=this.findByEmail(accountHolderEmail);
-        if(accountHolder!=null){
-           if(accountHolder.getPassword().equals(oldPassword)){
-            accountHolder.setPassword(BCrypt.hashpw(newPassword,BCrypt.gensalt() ));
-            accountHolderRepository.save(accountHolder);
-            return new ResponseEntity<>(accountHolder.getName()+" Your password has changed successful",HttpStatus.OK);
-           }
+
+    public ResponseEntity<String> updateAccountHolderPassword(String accountHolderEmail, String oldPassword,
+            String newPassword) {
+        AccountHolder accountHolder = this.findByEmail(accountHolderEmail);
+        if (accountHolder != null) {
+            if (accountHolder.getPassword().equals(oldPassword)) {
+                accountHolder.setPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()));
+                accountHolderRepository.save(accountHolder);
+                return new ResponseEntity<>(accountHolder.getName() + " Your password has changed successful",
+                        HttpStatus.OK);
+            }
         }
-        return new ResponseEntity<>("Incorrect credential please try again",HttpStatus.METHOD_NOT_ALLOWED);
+        return new ResponseEntity<>("Incorrect credential please try again", HttpStatus.METHOD_NOT_ALLOWED);
     }
-    public ResponseEntity<AccountHolder> login(String email,String password){
-        AccountHolder accountHolder= accountHolderRepository.findByEmailAndPassword(email,password);
-        if(accountHolder!=null)return new ResponseEntity<>(accountHolder,HttpStatus.OK);
-        else return new ResponseEntity<>(accountHolder,HttpStatus.METHOD_NOT_ALLOWED);
+
+    public AccountHolder login(String email, String password) {
+        AccountHolder accountHolder = accountHolderRepository.findByEmailAndPassword(email, password);
+        return accountHolder;
     }
 }
