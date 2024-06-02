@@ -1,6 +1,7 @@
 package com.campbackend;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 public class Main {
 public static void main(String[] args) {
     // int leftLimit = 48; // numeral '0'
@@ -15,8 +16,9 @@ public static void main(String[] args) {
     //   .toString();
 
     // System.out.println(generatedString);
-    LocalDate userDate=LocalDate.of(2020, 5, 4);
-    Period period=Period.between(userDate, LocalDate.now());
-    System.out.println(period.getYears());
+    LocalDate userDate=LocalDate.of(2023, 06, 01);
+    long date=userDate.until(LocalDate.now(),ChronoUnit.YEARS);
+    // Period period=Period.between(userDate, LocalDate.now());
+    System.out.println(date);
 }
 }
