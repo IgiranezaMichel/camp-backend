@@ -16,6 +16,7 @@ import com.campbackend.modal.Levels;
 import com.campbackend.pagination.BookPage;
 import com.campbackend.repository.BookRepository;
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 @Service
 public class BookServices {
     @Autowired
@@ -56,10 +57,9 @@ public BookPage accountHolderBookPage(PageInput page,UUID accountHolderId) {
     AccountHolder accountHolder=accountHolderServices.findById(accountHolderId);
     LocalDate date=accountHolder.getDob();
     System.out.println(date);
-    Period period = Period.between(date, LocalDate.now());
     Levels levels=new Levels();
     try {
-        UUID levelId=levelServices. levelBetweenUserDob(period.getYears());
+        UUID levelId=levelServices. levelBetweenUserDob(date.until(LocalDate.now(), ChronoUnit.YEARS));
         levels=levelServices.findById(levelId);
     } catch (Exception e) {
        levels=null;
