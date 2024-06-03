@@ -1,17 +1,17 @@
 enum Role {
-  UNION
+  ROLE_UNION
+  ROLE_FIELD
+  ROLE_DISTRICT
+  ROLE_CHURCH
+  ROLE_CHRISTIAN
+}
+enum ChurchType {
   FIELD
   DISTRICT
   CHURCH
-  CHRISTIAN
-}
-enum ChurchType {
-FIELD,
-DISTRICT,
-CHURCH
 }
 enum CampApplicantStatus {
-APPENDING,
-APPROVED,
-REJECT
+  APPENDING
+  APPROVED
+  REJECT
 }
