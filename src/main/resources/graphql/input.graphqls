@@ -49,7 +49,7 @@ input CampInput{
  title:String
 cost:Int 
 address:String 
-location:String 
+deadline:String 
 startingDate:String 
 endingDate:String 
 description:String 
@@ -71,4 +71,16 @@ input CampApplicantInput{
   paymentCode: String
   telephone: String
   comment: String
+}
+input AyGradeInput {
+  id: ID
+  gradeName: String
+  levelId: String
+}
+input ExamInput {
+  id:ID
+  name:String
+  description:String
+  instruction:String
+  ayGradeId:String
 }
