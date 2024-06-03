@@ -30,7 +30,7 @@ public class Camp {
     private String title;
     private int cost;
     private String address;
-    private String location;
+    private LocalDate deadline;
     private LocalDate startingDate;
     private LocalDate endingDate;
     private String description;
@@ -48,13 +48,13 @@ public class Camp {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<CampMentor> campMentorList;
 
-    public Camp(UUID id, String title, int cost, String address, String location, LocalDate startingDate,
+    public Camp(UUID id, String title, int cost, String address, LocalDate deadline, LocalDate startingDate,
             LocalDate endingDate, String description, String content) {
         this.id = id;
         this.title = title;
         this.cost = cost;
         this.address = address;
-        this.location = location;
+        this.deadline = deadline;
         this.startingDate = startingDate;
         this.endingDate = endingDate;
         this.description = description;
