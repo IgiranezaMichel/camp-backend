@@ -52,7 +52,7 @@ type Camp {
   title: String
   cost: Int
   address: String
-  location: String
+  deadline: LocalDate
   startingDate: String
   endingDate: String
   description: String
@@ -71,10 +71,22 @@ type CampApplicant {
   id: ID
   camp: Camp
   accountHolder: AccountHolder
-  levels:Levels
+  levels: Levels
   timeStamp: LocalDate
   campApplicantStatus: CampApplicantStatus
   paymentCode: String
   telephone: String
   comment: String
+}
+type AyGrade {
+  id: ID
+  gradeName: String
+  levels: Levels
+}
+type Exam {
+  id:ID
+  name:String
+  description:String
+  instruction:String
+  ayGrade:AyGrade
 }
