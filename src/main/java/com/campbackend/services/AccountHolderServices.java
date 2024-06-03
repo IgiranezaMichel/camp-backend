@@ -35,8 +35,9 @@ public class AccountHolderServices {
                     .limit(20)
                     .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                     .toString();
-            accountHolderInput.setRole(Role.CHRISTIAN);
-            accountHolderInput.setPassword(generatedPassword);
+            accountHolderInput.setRole(Role.ROLE_CHRISTIAN);
+            System.out.println(generatedPassword);
+            accountHolderInput.setPassword(BCrypt.hashpw(generatedPassword, BCrypt.gensalt()));
             AccountHolder accountHolder2 = accountHolderRepository.save(new AccountHolder(accountHolderInput.getId(),
                     accountHolderInput.getName(), accountHolderInput.getGender(), accountHolderInput.getPhoneNumber(),
                     accountHolderInput.getEmail(), accountHolderInput.getBase64Profile(),
