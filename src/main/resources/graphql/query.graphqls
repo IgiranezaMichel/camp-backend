@@ -22,5 +22,8 @@ getCampMentorList(campId:ID):CampMentor
 # camp applicant 
 accountHolderCampApplicationPage(input:PageInput,email:String):CampApplicantPage
 campApplicantPage(input:PageInput,campId:ID):CampApplicantPage
-
+# ay grade
+getAllAyGrade:[AyGrade]
+# exam
+getAllExams:[Exam]
 }
