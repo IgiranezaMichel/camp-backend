@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
@@ -18,6 +19,7 @@ import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.annotations.UuidGenerator.Style;
 import java.time.*;
 import com.campbackend.enums.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @NoArgsConstructor
 @Data
@@ -38,7 +40,8 @@ public class AccountHolder {
     @Enumerated(EnumType.STRING)
     private Role role;
     private LocalDateTime timeStamp;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "accountHolder",targetEntity = CampMentor.class)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "accountHolder",targetEntity = CampMentor.class)
+    @JsonIgnore()
     private List<CampMentor>campMentorList;
     public String getTimeStamp(){
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("dd-MMM-yyyy MM:ss a");
