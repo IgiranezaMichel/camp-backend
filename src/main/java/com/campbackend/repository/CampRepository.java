@@ -15,4 +15,6 @@ public interface CampRepository extends JpaRepository<Camp,UUID> {
 
     Page<Camp> findAllByEndingDateAfter(LocalDate now, PageRequest of);
 
+    Page<Camp> findAllByDeadlineAfter(LocalDate now, PageRequest of);
+
 }
