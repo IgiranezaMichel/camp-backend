@@ -1,7 +1,5 @@
 package com.campbackend.modal;
 
-import java.util.UUID;
-
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.annotations.UuidGenerator.Style;
@@ -42,6 +40,8 @@ public class Levels {
         this.setToAge(toAge);
         this.setPhoto(photo);
     }
+    @OneToMany(cascade = CascadeType.ALL,targetEntity = Book.class,mappedBy = "levels")
+    public List<AyGrade>levelAyGrades;
     @OneToMany(cascade = CascadeType.ALL,targetEntity = Book.class,mappedBy = "levels")
     public List<Book> bookList;
 }
