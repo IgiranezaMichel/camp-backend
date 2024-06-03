@@ -27,4 +27,10 @@ deleteCampMentor(id:ID):String
 # campApplication
 saveOrUpdateCampApplicant(campApplicantInput:CampApplicantInput):String 
 updateCampApplicantStatus(campApplicantId:ID,status:CampApplicantStatus,comment:String):String
+# ay grade
+saveAyGrade(ayGradeInput:AyGradeInput):String
+deleteAyGrade(ayGradeId:ID):String
+# exam
+saveExam(examInput:ExamInput):String
+deleteExam(id:ID):String
 }
