@@ -41,7 +41,7 @@ public List<Levels> getAll(){
     return levelRepository.findAll();
 }
 @Autowired private EntityManager entityManager;
-public UUID levelBetweenUserDob(int age){
+public UUID levelBetweenUserDob(long age){
 try {
 TypedQuery<Levels>query=entityManager.createQuery("select u from Levels u WHERE u.fromAge<=:age AND u.toAge>=:age",Levels.class);
 query.setParameter("age", age);
