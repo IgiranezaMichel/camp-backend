@@ -1,9 +1,9 @@
 package com.campbackend.enums;
 
 public enum Role {
-UNION,
-FIELD,
-DISTRICT,
-CHURCH,
-CHRISTIAN
+ROLE_UNION,
+ROLE_FIELD,
+ROLE_DISTRICT,
+ROLE_CHURCH,
+ROLE_CHRISTIAN
 }
