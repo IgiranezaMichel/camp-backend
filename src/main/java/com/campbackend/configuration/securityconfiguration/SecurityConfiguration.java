@@ -27,8 +27,7 @@ public class SecurityConfiguration {
                 })
                 .formLogin(login -> {
                     login.loginPage("/login").permitAll();
-                    login.failureUrl("/login?error");
-                    login.defaultSuccessUrl("/defaultsuccesslogin", true);
+                    login.defaultSuccessUrl("/login?success",true);
                 }).build();
     }
 
