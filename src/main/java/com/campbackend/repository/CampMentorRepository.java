@@ -11,6 +11,5 @@ import com.campbackend.modal.CampMentor;
 
 public interface CampMentorRepository extends JpaRepository<CampMentor,UUID>{
     List<CampMentor> findAllByCamp(Camp camp);
-
     CampMentor findByAccountHolderAndCamp(AccountHolder accountHolder, Camp camp2);
 }
