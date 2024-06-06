@@ -22,12 +22,28 @@ public class SecurityConfiguration {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/","/graphql").permitAll();
+                    auth.requestMatchers("/", "/login","/graphql").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .formLogin(login -> {
                     login.loginPage("/login").permitAll();
-                    login.defaultSuccessUrl("/login?success",true);
+                    login.defaultSuccessUrl("/success-login");
+                    login.failureUrl("/fail-login");
+
+                })
+                // .sessionManagement(ses -> {
+                //     ses.maximumSessions(1);
+                //     ses.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                //     ses.sessionFixation((sessionFixation) -> sessionFixation
+                //             .newSession());
+                // })
+                .logout((logout) -> {
+                    logout.logoutUrl("/logout");
+                    logout.deleteCookies("JSESSIONID");
+                })
+                .formLogin(login -> {
+                    login.loginPage("/login").permitAll();
+                    login.defaultSuccessUrl("/login?success", true);
                 }).build();
     }
 
