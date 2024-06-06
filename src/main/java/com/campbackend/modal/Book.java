@@ -1,6 +1,5 @@
 package com.campbackend.modal;
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UuidGenerator;
@@ -41,21 +40,21 @@ public class Book {
     private String serialNumber;
 
     public String getCover() {
-        return "data:image/png;base64,"+Base64.encodeBase64String(cover);
+        return "data:image/png;base64,"+Base64.getEncoder().encode(cover);
     }
 
     public String getFile() {
-        return Base64.encodeBase64String(file);
+        return Base64.getEncoder().encodeToString(file);
     }
 
     public Book(UUID id, String name, String file, Levels levels, String cover, String author,
             LocalDate publicationDate, String publisher, String serialNumber) {
         this.id = id;
         this.name = name;
-        this.file = Base64.decodeBase64(file.split("base64,")[1]);
+        this.file = Base64.getDecoder().decode(file.split("base64,")[1]);
         this.fileEncoding = file.split("base64,")[0] + "base64,";
         this.levels = levels;
-        this.cover = Base64.decodeBase64(cover.split("base64,")[1]);
+        this.cover = Base64.getDecoder().decode(cover.split("base64,")[1]);
         this.author = author;
         this.publicationDate = publicationDate;
         this.publisher = publisher;
