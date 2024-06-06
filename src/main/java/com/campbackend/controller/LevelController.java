@@ -7,7 +7,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import java.util.*;
-
+import java.security.Principal;
 import com.campbackend.input.LevelInput;
 import com.campbackend.modal.Levels;
 import com.campbackend.services.LevelServices;
@@ -24,7 +24,8 @@ public ResponseEntity<String>deleteLevel(@Argument(name="id")UUID level){
     return levelServices.delete(level);
 }
 @QueryMapping
-public List<Levels>getAllLevels(){
+public List<Levels>getAllLevels(Principal principle){
+    System.out.println(principle.getName());
     return levelServices.getAll();
 }
 }
