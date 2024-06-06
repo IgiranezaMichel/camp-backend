@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.campbackend.modal.AccountHolder;
 import com.campbackend.services.AccountHolderServices;
+
 @Service
 public class UserDetailService implements UserDetailsService {
     @Autowired private AccountHolderServices accountHolderServices;
