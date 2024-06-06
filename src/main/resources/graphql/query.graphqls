@@ -18,7 +18,7 @@ campPage(input:PageInput):CampPage
 activeCamp(input:PageInput):CampPage
 inactiveCamp(input:PageInput):CampPage
 # campMentor
-getCampMentorList(campId:ID):CampMentor
+getCampMentorList(campId:ID):[CampMentor]
 # camp applicant 
 accountHolderCampApplicationPage(input:PageInput,email:String):CampApplicantPage
 campApplicantPage(input:PageInput,campId:ID):CampApplicantPage
