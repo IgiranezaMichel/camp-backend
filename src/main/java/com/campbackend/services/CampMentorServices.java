@@ -64,6 +64,7 @@ public class CampMentorServices {
 
     public List<CampMentor> getCampMentorList(UUID campId) {
         Camp camp = campServices.findById(campId);
+        campMentorRepository.findAllByCamp(camp).forEach(i->System.out.println(i.getId()));
         return campMentorRepository.findAllByCamp(camp);
     }
 }
